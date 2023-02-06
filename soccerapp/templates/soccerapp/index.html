@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Document</title>
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'soccerapp/styles.css' %}" />
+
+</head>
+<body>
+
+<div>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'today' %}">Today</a></li>
+        <li><a href="https://github.com/yernarsha">About</a></li>
+    </ul>
+</div> 
+
+{% for item in jr %}
+<div class="container">
+    <div class="app" style="height:150px">
+        <div class="header" style="padding-top:10px">
+            <span class="team team-left">
+                <img src="{{ item.team_home_badge }}" style="width:50px" />
+                <span class="name">{{ item.match_hometeam_name }}</span>
+            </span>
+            <span class="score">{{ item.match_hometeam_ft_score }} - {{ item.match_awayteam_ft_score }}</span>
+            <span class="team team-right">
+                <img src="{{ item.team_away_badge }}" style="width:50px" />
+                <span class="name">{{ item.match_awayteam_name }}</span>
+            </span>   
+            
+            <div style="clear:both; width:100%; text-align:center; font-size:10px; margin-top:80px">
+                {{ item.league_name }} {{ item.country_name }}<br /><br />
+                {{ item.match_date }} {{ item.match_time }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</body>
+</html>
